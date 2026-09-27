@@ -1,9 +1,11 @@
+import type { Product, User } from '../domain/types';
+
 export type ID = string;
 export type TaxRate = 0|1|2|3|4|5|6|7|8|9|10|11|12|13|14|15|16|17|18;
 export const TAX_RATES: TaxRate[] = [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18];
 export type PaymentMethod = 'cash'|'card'|'bank'|'mobile'|'credit';
 export type MovementType = 'opening'|'purchase'|'sale'|'return'|'transfer'|'adjustment'|'damage'|'expiry';
-export interface Product { id: ID; sku: string; barcode?: string; name: string; genericName?: string; brandName?: string; category?: string; unit: string; salePrice: number; purchasePrice: number; taxRate: TaxRate; reorderLevel: number; active: boolean; createdAt: string; updatedAt: string; }
+export interface Product { id: ID; sku: string; barcode?: string; name: string; genericName?: string; brandName?: string; category?: string; unit: string; salePrice: number; purchasePrice: number; taxRate: TaxRate; reorderLevel: number; active: boolean; stockQuantity: number; createdAt: string; updatedAt: string; }
 export interface Batch { id: ID; productId: ID; batchNumber: string; expiryDate: string; remainingQuantity: number; purchaseCost: number; salePrice: number; supplierId?: ID; }
 export interface StockMovement { id: ID; productId: ID; batchId?: ID; type: MovementType; quantity: number; beforeQuantity: number; afterQuantity: number; reference?: string; createdAt: string; userId: ID; }
 export interface Customer { id: ID; name: string; phone?: string; creditLimit: number; balance: number; active: boolean; createdAt: string; }
